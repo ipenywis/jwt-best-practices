@@ -15,6 +15,7 @@ import {
 import { AccountContext } from "./context";
 import * as yup from "yup";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
   email: yup.string().required(),
@@ -25,6 +26,13 @@ export function LoginForm(props) {
   const { switchToSignup } = useContext(AccountContext);
   const [error, setError] = useState(null);
 
+  const navigate = useNavigate();
+
+  const storeAuthentication = (token, user) => {
+    localStorage.setItem("api-token", token);
+    localStorage.setItem("user", JSON.stringify(user));
+  };
+
   const onSubmit = async (values) => {
     setError(null);
     const response = await axios
@@ -33,8 +41,11 @@ export function LoginForm(props) {
         if (err && err.response) setError(err.response.data.message);
       });
 
-    if (response) {
+    if (response && response.data) {
+      const { token, user } = response.data;
+      storeAuthentication(token, user);
       alert("Welcome back in. Authenticating...");
+      navigate("/dashboard");
     }
   };
 
