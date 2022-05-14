@@ -14,7 +14,7 @@ import {
 } from "./common";
 import { AccountContext } from "./context";
 import * as yup from "yup";
-import axios from "axios";
+import axios from "../../axios";
 import { useNavigate } from "react-router-dom";
 
 const validationSchema = yup.object({
@@ -29,14 +29,15 @@ export function LoginForm(props) {
   const navigate = useNavigate();
 
   const storeAuthentication = (token, user) => {
-    localStorage.setItem("api-token", token);
     localStorage.setItem("user", JSON.stringify(user));
   };
 
   const onSubmit = async (values) => {
     setError(null);
     const response = await axios
-      .post("http://localhost:5000/api/v1/login", values)
+      .post("http://localhost:5000/api/v1/login", values, {
+        withCredentials: true,
+      })
       .catch((err) => {
         if (err && err.response) setError(err.response.data.message);
       });

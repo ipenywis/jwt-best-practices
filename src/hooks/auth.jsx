@@ -7,8 +7,7 @@ export function useAuth() {
 
   useEffect(() => {
     const user = localStorage.getItem("user");
-    const apiToken = localStorage.getItem("api-token");
-    if (user && apiToken) {
+    if (user) {
       setUser(JSON.parse(user));
       setIsAuthenticated(true);
     } else {

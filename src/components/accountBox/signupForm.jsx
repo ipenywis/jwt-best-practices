@@ -15,7 +15,7 @@ import {
 } from "./common";
 import { AccountContext } from "./context";
 import * as yup from "yup";
-import axios from "axios";
+import axios from "../../axios";
 
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 

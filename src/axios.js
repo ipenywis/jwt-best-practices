@@ -1,15 +1,8 @@
 import Axios from "axios";
 
-let axios = Axios.create();
+let axios = Axios.create({ withCredentials: true });
 
-axios.interceptors.request.use((config) => {
-  const token = localStorage.getItem("api-token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
-
-  return config;
-});
+axios.defaults.withCredentials = true;
 
 axios.interceptors.response.use(
   function (response) {
@@ -20,7 +13,6 @@ axios.interceptors.response.use(
   function (error) {
     console.log("Here!", error);
     if (error.response.status === 401) {
-      localStorage.removeItem("api-token");
       localStorage.removeItem("user");
     }
     return Promise.reject(error);

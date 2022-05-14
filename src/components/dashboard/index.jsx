@@ -35,6 +35,7 @@ export function Dashboard(props) {
       <h4>
         Dashboard! You're Authenticated!
         <b>Welcome 😃</b>
+        <p>{payment}</p>
       </h4>
       <input
         type="text"
