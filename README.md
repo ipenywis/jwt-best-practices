@@ -1,3 +1,17 @@
+# React JWT Auth Best Practices Project w/ Express API
+
+This Repo has three branches for the different parts of the project (good vs bad practices)
+As explained on Youtube Video Tutorial: https://youtu.be/FVmxtmzyrSw
+
+**API REPO: https://github.com/ipenywis/jwt-best-practices-server**
+
+## Branches for Bad & Good Practices
+
+- master has the best approach with all implementation, same as: jwt-blacklisted branch
+- jwt-bad-approach (Bad JWT Practices - No Session - Storing on Localstorage)
+- jwt-good-approach (Good JWT Practices - No Session - Storing on HTTP-ONLY cookies)
+- jwt-blacklist (Server Session implementation using Redis with Blacklist technique - NOT MUCH CHANGES FOR FRONTEND)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
